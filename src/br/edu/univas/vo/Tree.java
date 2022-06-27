@@ -1,10 +1,13 @@
 package br.edu.univas.vo;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class Tree {
 
     private Node root;
+    Scanner scanner = new Scanner(System.in);
 
     public void insertRoot(Product product) {
         root = createNode(product);
@@ -12,18 +15,25 @@ public class Tree {
         root.sons = new ArrayList<>();
     }
 
-    public Node insertSecondLevelNode(Product product){
+    public void insertSecondLevelNode(Product product){
         Node rootSecondLevel = createNode(product);
         rootSecondLevel.dad = root;
         rootSecondLevel.sons = new ArrayList<>();
-        return rootSecondLevel;
+        root.sons.add(rootSecondLevel);
     }
 
-    public Node insertThirdLevelNode(Product product){
+    public void insertFirstThirdLevelNode(Product product){
         Node rootThirdLevel = createNode(product);
-        rootThirdLevel.dad = root;
+        rootThirdLevel.dad = ;
         rootThirdLevel.sons = new ArrayList<>();
-        return rootThirdLevel;
+    }
+
+    public void insertSecondThirdLevelNode(Product product){
+        Node rootThirdLevel = createNode(product);
+        Node dad = rootThirdLevel.searcher(String.valueOf(product));
+        rootThirdLevel.dad = dad;
+        rootThirdLevel.sons = new ArrayList<>();
+
     }
 
     public Node createNode(Product newProduct) {
@@ -31,6 +41,8 @@ public class Tree {
         newNode.product = newProduct;
         return newNode;
     }
+
+
 
 
 }

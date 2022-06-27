@@ -1,65 +1,55 @@
 package br.edu.univas.main;
 
-import br.edu.univas.vo.Node;
 import br.edu.univas.vo.Product;
 import br.edu.univas.vo.Tree;
-
 import java.util.Scanner;
 
 public class StartApp {
 
     Scanner scanner = new Scanner(System.in);
-
-
     public void start(){
+
         Tree tree = new Tree();
 
-        //Product root "Violão".
+        // Enter "Violão";
+        System.out.println("Enter the root product: ");
         insertProductRoot(tree);
 
-        //Products Second Level "Corpo", "Braço", "Mão".
+        //Enter "Corpo", "Braço", "Mão";
+        for(int i=0; i<3; i++){
+            System.out.println("Enter the " + i+1 + "º second level product: ");
+            insertSecondLevelProduct(tree);
+        }
 
-        insertSecondLevelProduct(tree);
-
-        insertSecondLevelProduct(tree);
-
-        insertSecondLevelProduct(tree);
-
-        //Product Third Level "Mão", "Trastes";
-
-
-
+        //Enter "Trastes", "Tarraxas";
 
     }
 
     public void insertProductRoot(Tree tree){
 
-        String name = scanner.nextLine();
-        float unitPrice = scanner.nextFloat();
-        int quantity = scanner.nextInt(); scanner.nextLine();
-
-        Product productRoot = new Product(name, unitPrice , quantity);
+        Product productRoot = productSets();
         tree.insertRoot(productRoot);
     }
-
     public void insertSecondLevelProduct(Tree tree){
 
-        String name = scanner.nextLine();
-        float unitPrice = scanner.nextFloat();
-        int quantity = scanner.nextInt(); scanner.nextLine();
-
-        Product secondLevelProduct = new Product(name, unitPrice , quantity);
+        Product secondLevelProduct = productSets();
         tree.insertSecondLevelNode(secondLevelProduct);
-
     }
-
     public void insertThirdLevelProduct(Tree tree){
 
+        Product thirdLevelProduct = productSets();
+        tree.insertFirstThirdLevelNode(thirdLevelProduct);
+    }
+    public Product productSets(){
+        System.out.println("Enter the product name: ");
         String name = scanner.nextLine();
+        System.out.println("Enter the product unit price: ");
         float unitPrice = scanner.nextFloat();
+        System.out.println("Enter the product quantity to make Node dad: ");
         int quantity = scanner.nextInt(); scanner.nextLine();
 
-        Product thirdLevelProduct = new Product(name, unitPrice , quantity);
-        tree.insertThirdLevelNode(thirdLevelProduct);
+       Product product = new Product(name, unitPrice, quantity);
+
+       return product;
     }
 }
